@@ -54,9 +54,21 @@ DNS:     172.16.10.10
 
 O gateway corresponde à interface do pfSense na VLAN.
 
-![Instalação e promoção do Active Directory](images/01-active-directory-setup.jpg)
+![Server Manager com AD DS instalado](images/Captura%20de%20ecr%C3%A3%202026-11-05%20185919.png)
 
-*Figura 1 — Sequência de instalação do AD DS, configuração pós-instalação, criação da nova floresta e definição do domínio homelab.local.*
+*Figura 1 — AD DS instalado no Server Manager.*
+
+![Configuração pós-instalação do AD DS](images/Captura%20de%20ecr%C3%A3%202026-11-05%20191338.png)
+
+*Figura 2 — Notificação de pós-instalação com a opção para promover o servidor a Domain Controller.*
+
+![Criação de uma nova floresta](images/Captura%20de%20ecr%C3%A3%202026-11-05%20191416.png)
+
+*Figura 3 — Seleção de **Add a new forest** no assistente de configuração do Active Directory.*
+
+![Definição do domínio homelab.local](images/Captura%20de%20ecr%C3%A3%202026-11-05%20191505.png)
+
+*Figura 4 — Definição de `homelab.local` como Root domain name.*
 
 ## 4. Criação da floresta e promoção a Domain Controller
 
@@ -79,6 +91,10 @@ O nome NetBIOS atribuído automaticamente foi:
 ```text
 HOMELAB
 ```
+
+![Nome NetBIOS HOMELAB](images/Captura%20de%20ecr%C3%A3%202026-11-05%20191935.png)
+
+*Figura 5 — Nome NetBIOS `HOMELAB` atribuído ao domínio.*
 
 Assim, um utilizador pode autenticar-se no formato:
 
@@ -104,9 +120,9 @@ Foram mostrados avisos relacionados com o IP estático e com a delegação DNS. 
 
 Depois da promoção, o servidor reiniciou e passou a funcionar como Domain Controller.
 
-![Validação do domínio](images/02-active-directory-verification.jpg)
+![Verificação dos pré-requisitos](images/Captura%20de%20ecr%C3%A3%202026-11-05%20192335.png)
 
-*Figura 2 — Verificação dos pré-requisitos e validação do domínio homelab.local através de Active Directory Users and Computers.*
+*Figura 6 — O assistente confirma que os pré-requisitos foram validados com sucesso.*
 
 ## 6. Validação no Active Directory Users and Computers
 
@@ -130,6 +146,14 @@ Foram criados os containers padrão, incluindo:
 - Users
 
 Também ficaram disponíveis grupos como **Domain Admins**, **Domain Users**, **Domain Computers**, **Enterprise Admins** e **DnsAdmins**.
+
+![Domínio homelab.local no Active Directory Users and Computers](images/Captura%20de%20ecr%C3%A3%202026-11-05%20194036.png)
+
+*Figura 7 — O domínio `homelab.local` visível na consola Active Directory Users and Computers.*
+
+![Containers e grupos padrão do domínio](images/Captura%20de%20ecr%C3%A3%202026-11-05%20194216.png)
+
+*Figura 8 — Containers e grupos padrão criados pelo Active Directory.*
 
 ## 7. Organização do Active Directory
 
@@ -169,6 +193,10 @@ No final da instalação executei:
 
 para concluir a configuração do serviço no domínio.
 
+![Instalação da função DHCP Server](images/Captura%20de%20ecr%C3%A3%202026-11-05%20203601.png)
+
+*Figura 9 — Instalação da função DHCP Server concluída no Server Manager.*
+
 ## 9. Criação do scope DHCP
 
 Na consola **DHCP**, criei um novo scope IPv4 para a rede do laboratório.
@@ -191,9 +219,17 @@ para configurar logo gateway, DNS e restantes opções entregues aos clientes.
 
 O scope foi depois **ativado**.
 
-![Instalação e configuração do DHCP](images/03-dhcp-configuration.jpg)
+![Configuração das opções do scope DHCP](images/Captura%20de%20ecr%C3%A3%202026-11-05%20204018.png)
 
-*Figura 3 — Instalação do DHCP Server, configuração das opções do scope e criação do Address Pool iniciado em 172.16.10.100.*
+*Figura 10 — Configuração das opções DHCP durante o New Scope Wizard.*
+
+![Address Pool do scope homelab](images/Captura%20de%20ecr%C3%A3%202026-11-05%20204726.png)
+
+*Figura 11 — Address Pool do scope `172.16.10.0/24`, iniciado em `172.16.10.100`.*
+
+![Visão geral do Server Manager](images/Server%20Manager.png)
+
+*Figura 12 — Visão geral do Server Manager após a configuração dos serviços do Windows Server.*
 
 ## 10. Relação entre Windows Server e pfSense
 
